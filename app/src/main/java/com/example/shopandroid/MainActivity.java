@@ -21,11 +21,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnAdd, btnClear, btnCheckout,btnToDB,btnToStore;
+    Button btnAdd, btnClear,btnToDB,btnToStore;
     EditText name, cost;
-    TextView basket;
-    Toast toast;
-    float TotalCost = 0;
+
 
     DBHelper dbHelper;
     SQLiteDatabase database;
@@ -48,14 +46,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnToStore=(Button) findViewById(R.id.btnToStore);
         btnToStore.setOnClickListener(this);
 
-        btnCheckout = (Button) findViewById(R.id.btnCheckout);
-        btnCheckout.setOnClickListener(this);
-
 
 
         name = (EditText) findViewById(R.id.name);
         cost = (EditText) findViewById(R.id.cost);
-        basket = (TextView) findViewById(R.id.basket);
+
 
         dbHelper = new DBHelper(this);
         database = dbHelper.getWritableDatabase();
@@ -106,14 +101,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 deleteBtn.setId(cursor.getInt(idIndex));
                 dbOutputRow.addView(deleteBtn);
 
-                Button AddBasketBtn = new Button(this);
-                AddBasketBtn.setOnClickListener(this);
-                params.weight = 1.0f;
-                AddBasketBtn.setLayoutParams(params);
-                AddBasketBtn.setText("Добавить");
-                AddBasketBtn.setId(cursor.getInt(idIndex));
-                dbOutputRow.addView(AddBasketBtn);
-
                 dbOutput.addView(dbOutputRow);
 
             } while (cursor.moveToNext());
@@ -146,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dbOutput.removeAllViews();
                 updateTable();
                 break;
+
             case R.id.btnToStore:
                 Intent intent1 =new Intent(this,ShopPage.class);
                 startActivity(intent1);
@@ -153,13 +141,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
 
-
-            case R.id.btnCheckout:
-                toast = Toast.makeText(getApplicationContext(),"Сумма заказа - "+ basket.getText(), Toast.LENGTH_LONG);
-                toast.show();
-                TotalCost=0;
-                basket.setText(TotalCost+" Руб");
-                break;
 
             default:
                 Button button1 = (Button) v;
@@ -193,17 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         updateTable();
                     }
                 }
-                if (button1.getText() == "Добавить") {
-                    int id = v.getId();
-                    Cursor cursorAdd = database.query(DBHelper.TABLE_CONTACTS, null, null, null, null, null, null);
-                    cursorAdd.moveToPosition(id-1);
-                    int id1 = cursorAdd.getColumnIndex(DBHelper.KEY_COST);
-                    TotalCost+=Float.valueOf(cursorAdd.getString(id1));
-                    basket.setText(TotalCost+" Руб");
-                    cursorAdd.close();
-                    updateTable();
-                    break;
-                }
+
         }
     }
 }
