@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4E8F3"
-    tools:context=".MainActivity">
+    tools:context=".ShopPage">
 
     <TextView
         android:id="@+id/basket"
@@ -35,52 +34,6 @@
         app:layout_constraintStart_toEndOf="@+id/basket"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="275dp"
-        android:layout_height="wrap_content"
-        android:hint="Product Name"
-        android:minHeight="48dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/basket" />
-
-    <EditText
-        android:id="@+id/cost"
-        android:layout_width="275dp"
-        android:layout_height="wrap_content"
-        android:hint="Cost"
-        android:minHeight="48dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name" />
-
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="#4CAF50"
-        android:text="add"
-        app:layout_constraintEnd_toStartOf="@+id/btnClear"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cost" />
-
-    <Button
-        android:id="@+id/btnClear"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="#FF0202"
-        android:text="clear all"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnAdd"
-        app:layout_constraintTop_toBottomOf="@id/cost" />
-
     <TableLayout
         android:id="@+id/dbOutput"
         android:layout_width="0dp"
@@ -89,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnClear">
+        app:layout_constraintTop_toBottomOf="@+id/btnCheckout">
 
         <TableRow
             android:layout_width="match_parent"
@@ -127,6 +80,5 @@
         android:text="To Store"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

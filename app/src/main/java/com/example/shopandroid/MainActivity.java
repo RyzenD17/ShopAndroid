@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnAdd, btnClear, btnCheckout;
+    Button btnAdd, btnClear, btnCheckout,btnToDB,btnToStore;
     EditText name, cost;
     TextView basket;
     Toast toast;
@@ -41,8 +42,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnClear = (Button) findViewById(R.id.btnClear);
         btnClear.setOnClickListener(this);
 
+        btnToDB=(Button) findViewById(R.id.btnToDB);
+        btnToDB.setOnClickListener(this);
+
+        btnToStore=(Button) findViewById(R.id.btnToStore);
+        btnToStore.setOnClickListener(this);
+
         btnCheckout = (Button) findViewById(R.id.btnCheckout);
         btnCheckout.setOnClickListener(this);
+
+
 
         name = (EditText) findViewById(R.id.name);
         cost = (EditText) findViewById(R.id.cost);
@@ -137,6 +146,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dbOutput.removeAllViews();
                 updateTable();
                 break;
+            case R.id.btnToStore:
+                Intent intent1 =new Intent(this,ShopPage.class);
+                startActivity(intent1);
+
+                break;
+
+
 
             case R.id.btnCheckout:
                 toast = Toast.makeText(getApplicationContext(),"Сумма заказа - "+ basket.getText(), Toast.LENGTH_LONG);
