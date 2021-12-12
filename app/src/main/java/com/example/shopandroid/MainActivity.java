@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btnToStore:
                 Intent intent1 =new Intent(this,ShopPage.class);
+                intent1.putExtra("justUser",false);
                 startActivity(intent1);
 
                 break;

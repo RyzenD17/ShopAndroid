@@ -29,12 +29,23 @@ public class ShopPage extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_page);
 
+        Bundle arg = getIntent().getExtras();
+        boolean justUser = arg.getBoolean("justUser",false);
+
         btnCheckout = (Button) findViewById(R.id.btnCheckout);
         btnCheckout.setOnClickListener(this);
 
         btnToDB=(Button) findViewById(R.id.btnToDB);
         btnToDB.setOnClickListener(this);
 
+        if(justUser)
+        {
+            btnToDB.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            btnToDB.setOnClickListener(this);
+        }
         basket = (TextView) findViewById(R.id.basket);
 
         dbHelper = new DBHelper(this);
